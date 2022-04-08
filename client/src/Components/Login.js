@@ -2,15 +2,15 @@
    
 import React, {useState} from 'react'
 import Auth from './Auth'
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 
-function Login({setCurrentUser,setIsAuthenticated}) {
+function Login({setUser,setIsAuthenticated}) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
    
     const [error, setError] = useState([])
-    let history = useHistory();
+    // let history = useHistory();
 
     function onSubmit(e){
         e.preventDefault()
@@ -28,7 +28,7 @@ function Login({setCurrentUser,setIsAuthenticated}) {
           if(res.ok){
             res.json()
             .then(user=>{
-              setCurrentUser(user)
+              setUser(user)
               setIsAuthenticated(true)
             })
             

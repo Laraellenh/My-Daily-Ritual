@@ -26,8 +26,8 @@ function App() {
         .then(()=> {
           fetch('/users/:username')
           .then(res => res.json())
-          .then(currentUser => {
-            console.log(currentUser)
+          .then(user => {
+            console.log(user)
             
           });
         })
@@ -78,7 +78,7 @@ function App() {
     </Route>
     </Switch>
     <Route path="/login">
-          <Login />
+          <Login setIsAuthenticated={setIsAuthenticated} setUser={setUser}/>
     </Route>
     </>
   );

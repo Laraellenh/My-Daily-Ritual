@@ -4,28 +4,28 @@ function Auth({setUser}) {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [passwordConfirm, setPasswordConfirm] = useState("")
+    // const [passwordConfirm, setPasswordConfirm] = useState("")
     const handleUsername = (e) => setUsername(e.target.value)
     const handleEmail = (e) => setEmail(e.target.value)
     const handlePassword = (e) => setPassword(e.target.value)
-    const handleConfirm = (e) => setPasswordConfirm(e.target.value)
+    // const handleConfirm = (e) => setPasswordConfirm(e.target.value)
     const [errors, setErrors] = useState([])
    
-    const passwordMatch = (p1, p2) => {
-      if (p1 && p2 && p1 === p2) {
-        return true
-      }
-      else {
-        return false
-      }
-    }
+    // const passwordMatch = (p1, p2) => {
+    //   if (p1 && p2 && p1 === p2) {
+    //     return true
+    //   }
+    //   else {
+    //     return false
+    //   }
+    // }
     const handleSubmit = (e) => {
       e.preventDefault();
-      if (!passwordMatch(password, passwordConfirm)) {
-        alert('Your password and password confirmation do not match.')
-        return false
-      }
-      const newUser = { username, email, password: passwordConfirm }
+      // if (!passwordMatch(password_digest, passwordConfirm)) {
+      //   alert('Your password and password confirmation do not match.')
+      //   return false
+      // }
+      const newUser = { username, email, password}
       fetch(`/signup`, {
         method: "POST",
         headers: {
@@ -39,6 +39,9 @@ function Auth({setUser}) {
           if(json.errors) setErrors(Object.entries(json.errors))
        
       })
+      setEmail("")
+      setPassword("")
+      setUsername("")
       
   }
     return (
@@ -60,12 +63,12 @@ function Auth({setUser}) {
     
         <input type="password" value={password} onChange={(e) => handlePassword(e)} />
         </label>
-        <label> Confirm Password</label>
+        {/* <label> Confirm Password</label>
           <input
             type="password"
             value={passwordConfirm}
             placeholder="password"
-            onChange={(e) =>  handleConfirm(e)} />
+            onChange={(e) =>  handleConfirm(e)} /> */}
         
        
         <input type="submit" value="Sign up!" />
